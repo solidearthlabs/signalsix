@@ -1,7 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Valve.VR;
+#if STEAMVR
+using Valve.VR; 
 
 public class StickToPlayer : MonoBehaviour
 {
@@ -21,3 +22,4 @@ public class StickToPlayer : MonoBehaviour
         transform.position = playerBody.transform.position + forViewFitness;//+ new Vector3(0f, high f, 0f);
     }
 }
+#endif
