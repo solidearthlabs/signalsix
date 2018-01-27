@@ -1,14 +1,19 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class levelGenerator : MonoBehaviour {
 
 	List<Floor> world = new List<Floor>();
+    public GameObject levelHolder;
 
-
+    int currentFloor = 0;
 	void Start () {
-		world.Add(generateFloor(0));
+        levelHolder = new GameObject();
+
+        for (currentFloor = 0; currentFloor<1; currentFloor++)
+		    world.Add(generateFloor(0));
 	}
 	
 
@@ -16,16 +21,20 @@ public class levelGenerator : MonoBehaviour {
 	Floor generateFloor(Style s){
 		Floor f = new Floor();
 
+        f.Add(new Room(0, Vector2.zero));
+
+
         //
-		int winPathCount = UnityEngine.Random.Range(6,12);
+        int winPathCount = UnityEngine.Random.Range(6,10);
+        Debug.Log(winPathCount);
+
 		Vector2 cursorPosition = Vector2.zero;
 		Direction directionProd = 0;
         //generate the ideal path
-        for (int winPath = 0; winPath < winPathCount; winPath++){
+        for (int winPath = 1; winPath < winPathCount; winPath++){
 			//set direction test
 			directionProd = (Direction)UnityEngine.Random.Range(0,4);
 
-            f.Add(new Room(0, Vector2.zero));
 
 			bool acceptable = false;
 			while(!acceptable)
@@ -37,27 +46,90 @@ public class levelGenerator : MonoBehaviour {
                 {
                     f[winPath].isDestination = true;
                     winPath = winPathCount;
+                    acceptable = true;
                     //don't add a room if you're stuck
                     break;
                 }
 
                 //if(there's nothing where the directionProd is)
                 if (!f.checkDirections(cursorPosition)[(int)directionProd])
+                {
                     acceptable = true;
+                }
 
                 //if we've passed, but it isn't the end of the line, just add
                 if (acceptable)
                 {
                     cursorPosition += directionToVector(directionProd);
                     f.Add(new Room(0, cursorPosition));
+
+                    //bool[] debugDirs = f.checkDirections(cursorPosition);
+                    //Debug.Log("lcoation:" + cursorPosition + " direction: " + directionProd + " sides: " + debugDirs[0] + " " + debugDirs[1] + " " + debugDirs[2] + " " + debugDirs[3]);
                 }
             }
             
 		}
 
-        //debug path
+
+        //Add sister rooms
+        /*
         foreach (Room r in f)
-            Debug.Log(r.location);
+        {
+            if (UnityEngine.Random.Range(0, 1) <= .7f)
+            {
+                Direction prod = Random
+            }
+        }*/
+
+
+        //set door count and directions
+        for(int i  = 0; i<f.Count; i++)
+        {
+            f[i].doorCount = f.checkDoorNum(f[i].location);
+            f.updateSiblings(i);
+            switch (f[i].doorCount)
+            {
+                case 1:
+                    if (f[i].siblings[1]) f[i].direction = Direction.SOUTH;
+                    if (f[i].siblings[2]) f[i].direction = Direction.EAST;
+                    if (f[i].siblings[3]) f[i].direction = Direction.WEST;
+                    break;
+                case 2:
+                    if (f[i].siblings[0] && f[i].siblings[1] || f[i].siblings[2] && f[i].siblings[3])
+                        f[i].direction = Direction.CROSS;
+                    else if (f[i].siblings[0] && f[i].siblings[3])
+                        f[i].direction = Direction.NORTH;
+                    else if (f[i].siblings[0] && f[i].siblings[2])
+                        f[i].direction = Direction.SOUTH;
+                    else if (f[i].siblings[1] && f[i].siblings[2])
+                        f[i].direction = Direction.EAST;
+                    else if (f[i].siblings[1] && f[i].siblings[3])
+                        f[i].direction = Direction.WEST;
+
+                    else Debug.Log("error");
+                        
+                    break;
+                case 3:
+                    if (!f[i].siblings[1]) f[i].direction = Direction.SOUTH;
+                    if (!f[i].siblings[2]) f[i].direction = Direction.EAST;
+                    if (!f[i].siblings[3]) f[i].direction = Direction.WEST;
+                    break;
+            }
+        }
+
+        //instantiate path
+        foreach (Room r in f)
+        {
+            //randomize loads
+            GameObject m = Instantiate(Resources.Load<GameObject>("testAssetDONOTUSE"));
+            m.transform.position = new Vector3(r.location.x * -6.4f, 40*currentFloor, r.location.y * -6.4f);
+            m.name = r.location.x + " " + r.location.y;
+            //set room directions
+            m.transform.rotation = Quaternion.Euler(-90,0,0);
+
+            m.transform.parent = levelHolder.transform;
+            
+        }
 
 		return f;
 
@@ -93,13 +165,21 @@ public class Room{
 
 	public byte doorCount = 0;
 	public Direction direction = Direction.NORTH;
+    public bool[] siblings = new bool[4];
 	public Style style = Style.DEFAULT;
 	public Vector2 location = Vector2.zero;
 	public bool isDestination = false;
 
 	bool linearTwo = false;
 
-	public Room(){}
+	public Room(Room r){
+        doorCount = r.doorCount;
+        direction = r.direction;
+        siblings = r.siblings;
+        style = r.style;
+        location = r.location;
+        isDestination = r.isDestination;
+    }
 	public Room(Style style, Vector2 location){
 		//this.doors = doors;
 		this.style = style;
@@ -140,20 +220,27 @@ public class Floor : List<Room>{
 		if(checkLocation(source + new Vector2(0,-1)))
 			dirs[1] = true;
 		if(checkLocation(source + new Vector2(-1,0)))
-			dirs[2] = true;
-		if(checkLocation(source + new Vector2(1,0)))
 			dirs[3] = true;
+		if(checkLocation(source + new Vector2(1,0)))
+			dirs[2] = true;
 
 		return dirs;
 	}
+
+    //may actually not work
+    public void updateSiblings(int i)
+    {
+        this[i].siblings = checkDirections(this[i].location);
+    }
+
 }
 
 public enum Direction{
 	NORTH = 0,
 	SOUTH = 1,
 	EAST = 2,
-	WEST = 3
-        
+	WEST = 3,
+    CROSS = 4
 }
 
 public enum Style{
