@@ -25,3 +25,5 @@ ProjectSettings/NavMeshAreas.asset
 ProjectSettings/EditorBuildSettings.asset
 ProjectSettings/DynamicsManager.asset
 ProjectSettings/AudioManager.asset
+signalsix.csproj
+signalsix.Editor.csproj
