@@ -3,3 +3,5 @@ Temp*
 UnityPackageManager*
 *.exe
 *~
+SpaceNavigator*
+NavmeshComponents/Examples*
