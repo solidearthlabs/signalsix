@@ -10,11 +10,24 @@ public class levelGenerator : MonoBehaviour {
 
     int currentFloor = 0;
 	void Start () {
-        levelHolder = new GameObject();
+        levelHolder = new GameObject("Floor" + currentFloor);
 
-        for (currentFloor = 0; currentFloor<1; currentFloor++)
+        for (currentFloor = 0; currentFloor<3; currentFloor++)
 		    world.Add(generateFloor(0));
 	}
+
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.J))
+        {
+            world.Clear();
+            //int count = levelHolder.transform.childCount;
+            //for (int i = 0; i < count; i++)
+                Destroy(levelHolder);
+            levelHolder = new GameObject("Floor" + currentFloor);
+            world.Add(generateFloor(0));
+        }
+    }
 	
 
 
@@ -25,7 +38,7 @@ public class levelGenerator : MonoBehaviour {
 
 
         //
-        int winPathCount = UnityEngine.Random.Range(6,10);
+        int winPathCount = UnityEngine.Random.Range(6,30);
         Debug.Log(winPathCount);
 
 		Vector2 cursorPosition = Vector2.zero;
@@ -95,8 +108,10 @@ public class levelGenerator : MonoBehaviour {
                     if (f[i].siblings[3]) f[i].direction = Direction.WEST;
                     break;
                 case 2:
-                    if (f[i].siblings[0] && f[i].siblings[1] || f[i].siblings[2] && f[i].siblings[3])
+                    if (f[i].siblings[0] && f[i].siblings[1])
                         f[i].direction = Direction.CROSS;
+                    else if (f[i].siblings[2] && f[i].siblings[3])
+                        f[i].direction = Direction.HCROSS;
                     else if (f[i].siblings[0] && f[i].siblings[3])
                         f[i].direction = Direction.NORTH;
                     else if (f[i].siblings[0] && f[i].siblings[2])
@@ -120,12 +135,68 @@ public class levelGenerator : MonoBehaviour {
         //instantiate path
         foreach (Room r in f)
         {
-            //randomize loads
-            GameObject m = Instantiate(Resources.Load<GameObject>("testAssetDONOTUSE"));
+            GameObject m;
+            //TODO: randomize loads
+            if (r.direction != Direction.CROSS && r.direction != Direction.HCROSS)
+                m = Instantiate(Resources.Load<GameObject>("room" + r.doorCount)); //"testAssetDONOTUSE"));//
+            else
+                m = Instantiate(Resources.Load<GameObject>("Room5"));
             m.transform.position = new Vector3(r.location.x * -6.4f, 40*currentFloor, r.location.y * -6.4f);
             m.name = r.location.x + " " + r.location.y;
+
             //set room directions
-            m.transform.rotation = Quaternion.Euler(-90,0,0);
+            switch (r.direction)
+            {
+                case Direction.NORTH:
+                    break;
+                case Direction.SOUTH:
+                    switch (r.doorCount)
+                    {
+                        case 1:
+                            m.transform.rotation = Quaternion.Euler(-90, 180, 0);
+                            break;
+                        case 2:
+                            m.transform.rotation = Quaternion.Euler(-90, 90, 0);
+                            break;
+                        case 3:
+                            m.transform.rotation = Quaternion.Euler(-90, 180, 0);
+                            break;
+                    }
+                    break;
+                case Direction.EAST:
+                    switch (r.doorCount)
+                    {
+                        case 1:
+                            m.transform.rotation = Quaternion.Euler(-90, 90, 0);
+                            break;
+                        case 2:
+                            m.transform.rotation = Quaternion.Euler(-90, 180, 0);
+                            break;
+                        case 3:
+                            m.transform.rotation = Quaternion.Euler(-90, 90, 0);
+                            break;
+                    }
+                    break;
+                case Direction.WEST:
+                    switch (r.doorCount)
+                    {
+                        case 1:
+                            m.transform.rotation = Quaternion.Euler(-90, -90, 0);
+                            break;
+                        case 2:
+                            m.transform.rotation = Quaternion.Euler(-90, -90, 0);
+                            break;
+                        case 3:
+                            m.transform.rotation = Quaternion.Euler(-90, -90, 0);
+                            break;
+                    }
+                    break;
+                case Direction.CROSS:
+                    break;
+                case Direction.HCROSS:
+                    m.transform.rotation = Quaternion.Euler(-90, 90, 0);
+                    break;
+            }
 
             m.transform.parent = levelHolder.transform;
             
@@ -240,7 +311,8 @@ public enum Direction{
 	SOUTH = 1,
 	EAST = 2,
 	WEST = 3,
-    CROSS = 4
+    CROSS = 4,
+    HCROSS = 5
 }
 
 public enum Style{
