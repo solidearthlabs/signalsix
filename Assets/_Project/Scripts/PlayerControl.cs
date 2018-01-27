@@ -1,7 +1,8 @@
 ﻿  using UnityEngine;
   using System.Collections;
   using System.Collections.Generic;
-  using Valve.VR;
+#if STEAMVR
+using Valve.VR;
   
   public class PlayerControl : MonoBehaviour {
 
@@ -129,3 +130,4 @@
       }
 
   }
+#endif
