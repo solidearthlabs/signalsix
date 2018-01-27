@@ -28,7 +28,7 @@ public class PlayerControl : MonoBehaviour {
 	}
 }
 */
-
+#if STEAMVR
   using UnityEngine;
   using System.Collections;
   using System.Collections.Generic;
@@ -92,3 +92,4 @@ public class PlayerControl : MonoBehaviour {
           }
       }
   }
+#endif
