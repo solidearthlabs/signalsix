@@ -17,13 +17,13 @@ public class levelGenerator : MonoBehaviour {
 		Floor f = new Floor();
 
 		//generate the ideal path
-		int winPathCount = UnityEngine.Random.RandomRange(6,12);
+		int winPathCount = UnityEngine.Random.Range(6,12);
 		Vector2 cursorPosition = Vector2.zero;
 		Direction directionProd = 0;
 		Room filler = null;
 		for(int winPath = 0; winPath < winPathCount; winPath++){
 			//set direction test
-			directionProd = (Direction)UnityEngine.Random.RandomRange(0,3);
+			directionProd = (Direction)UnityEngine.Random.Range(0,3);
 			byte doorCount = f.checkDoorNum(cursorPosition);
 			filler = null;
 
@@ -52,7 +52,7 @@ public class levelGenerator : MonoBehaviour {
 				iterateDirection(ref directionProd);
 			}
 
-			if(filler.location!=null)
+			//if(filler.location!=null)
 				f.Add(filler);
 
 

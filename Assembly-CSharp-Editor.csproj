@@ -9,10 +9,10 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{C5D10D7C-F98E-2FC3-5E0E-0DBAF2AE6B2A}</ProjectGuid>
+    <ProjectGuid>{0F37F182-8D23-4D99-6815-B5BAD3BFF266}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <AssemblyName>Assembly-CSharp</AssemblyName>
+    <AssemblyName>Assembly-CSharp-Editor</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <BaseDirectory>Assets</BaseDirectory>
@@ -51,25 +51,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\levelGenerator.cs" />
-     <Compile Include="Assets\NavMeshComponents\Examples\Scripts\AgentLinkMover.cs" />
-     <Compile Include="Assets\NavMeshComponents\Examples\Scripts\ClickToMove.cs" />
-     <Compile Include="Assets\NavMeshComponents\Examples\Scripts\DestroyOnTrigger.cs" />
-     <Compile Include="Assets\NavMeshComponents\Examples\Scripts\DungeonManager.cs" />
-     <Compile Include="Assets\NavMeshComponents\Examples\Scripts\EnableIffSleeping.cs" />
-     <Compile Include="Assets\NavMeshComponents\Examples\Scripts\FreeCam.cs" />
-     <Compile Include="Assets\NavMeshComponents\Examples\Scripts\LocalNavMeshBuilder.cs" />
-     <Compile Include="Assets\NavMeshComponents\Examples\Scripts\MeshTool.cs" />
-     <Compile Include="Assets\NavMeshComponents\Examples\Scripts\NavMeshPrefabInstance.cs" />
-     <Compile Include="Assets\NavMeshComponents\Examples\Scripts\NavMeshSourceTag.cs" />
-     <Compile Include="Assets\NavMeshComponents\Examples\Scripts\Oscillator.cs" />
-     <Compile Include="Assets\NavMeshComponents\Examples\Scripts\RandomInstancing.cs" />
-     <Compile Include="Assets\NavMeshComponents\Examples\Scripts\RandomWalk.cs" />
-     <Compile Include="Assets\NavMeshComponents\Examples\Scripts\SpawnPrefabOnKeyDown.cs" />
-     <Compile Include="Assets\NavMeshComponents\Scripts\NavMeshLink.cs" />
-     <Compile Include="Assets\NavMeshComponents\Scripts\NavMeshModifier.cs" />
-     <Compile Include="Assets\NavMeshComponents\Scripts\NavMeshModifierVolume.cs" />
-     <Compile Include="Assets\NavMeshComponents\Scripts\NavMeshSurface.cs" />
+     <Compile Include="Assets\NavMeshComponents\Editor\NavMeshComponentsGUIUtility.cs" />
+     <Compile Include="Assets\NavMeshComponents\Editor\NavMeshLinkEditor.cs" />
+     <Compile Include="Assets\NavMeshComponents\Editor\NavMeshModifierEditor.cs" />
+     <Compile Include="Assets\NavMeshComponents\Editor\NavMeshModifierVolumeEditor.cs" />
+     <Compile Include="Assets\NavMeshComponents\Editor\NavMeshSurfaceEditor.cs" />
+     <Compile Include="Assets\NavMeshComponents\Examples\Editor\NavMeshPrefabInstanceEditor.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>
@@ -160,6 +147,16 @@
  <Reference Include="UnityEngine.StandardEvents">
  <HintPath>/Users/xenia/Library/Unity/cache/packages/packages.unity.com/com.unity.standardevents@1.0.10/UnityEngine.StandardEvents.dll</HintPath>
  </Reference>
+ <Reference Include="UnityEditor.iOS.Extensions.Xcode">
+ <HintPath>/Applications/Unity/PlaybackEngines/iOSSupport/UnityEditor.iOS.Extensions.Xcode.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEditor.iOS.Extensions.Common">
+ <HintPath>/Applications/Unity/PlaybackEngines/iOSSupport/UnityEditor.iOS.Extensions.Common.dll</HintPath>
+ </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="Assembly-CSharp.csproj">
+      <Project>{C5D10D7C-F98E-2FC3-5E0E-0DBAF2AE6B2A}</Project>      <Name>Assembly-CSharp</Name>    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
