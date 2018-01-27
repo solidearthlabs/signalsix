@@ -11,3 +11,17 @@ signalsix2.CSharp.csproj
 signalsix2.sln
 ProjectSettings.asset
 
+Assets/SteamVR*
+Assets/VRTK*
+ProjectSettings/UnityAdsSettings.asset
+ProjectSettings/TimeManager.asset
+ProjectSettings/TagManager.asset
+ProjectSettings/UnityConnectSettings.asset
+ProjectSettings/UnityAdsSettings.asset.meta
+ProjectSettings/InputManager.asset
+ProjectSettings/GraphicsSettings.asset
+ProjectSettings/EditorSettings.asset
+ProjectSettings/NavMeshAreas.asset
+ProjectSettings/EditorBuildSettings.asset
+ProjectSettings/DynamicsManager.asset
+ProjectSettings/AudioManager.asset

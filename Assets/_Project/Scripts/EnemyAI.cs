@@ -13,7 +13,7 @@ public class EnemyAI : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Player").transform;
+        
         navAgent = GetComponent<NavMeshAgent>();
     }
 
@@ -21,8 +21,14 @@ public class EnemyAI : MonoBehaviour
     void Update()
 
     {
-
-        navAgent.destination = player.position;
+        if (player == null)
+        {
+            GameObject go = GameObject.FindGameObjectWithTag("Player");
+            if (go != null)
+                player = go.transform;
+        }
+        if (player != null)
+            navAgent.destination = player.position;
     }
 
 
