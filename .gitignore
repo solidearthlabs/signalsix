@@ -6,3 +6,6 @@ UnityPackageManager*
 SpaceNavigator*
 NavmeshComponents/Examples*
 signalsix.sln
+signalsix2.CSharp.Editor.csproj
+signalsix2.CSharp.csproj
+signalsix2.sln
