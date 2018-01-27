@@ -13,7 +13,7 @@ public class levelGenerator : MonoBehaviour {
         levelHolder = new GameObject("Floor" + currentFloor);
 
         for (currentFloor = 0; currentFloor<3; currentFloor++)
-		    world.Add(generateFloor(0));
+		    world.Add(generateFloor(Style.western));
 	}
 
     void Update()
@@ -25,7 +25,7 @@ public class levelGenerator : MonoBehaviour {
             //for (int i = 0; i < count; i++)
                 Destroy(levelHolder);
             levelHolder = new GameObject("Floor" + currentFloor);
-            world.Add(generateFloor(0));
+            world.Add(generateFloor(Style.mansion));
         }
     }
 	
@@ -34,7 +34,7 @@ public class levelGenerator : MonoBehaviour {
 	Floor generateFloor(Style s){
 		Floor f = new Floor();
 
-        f.Add(new Room(0, Vector2.zero));
+        f.Add(new Room(s, Vector2.zero));
 
 
         //
@@ -74,23 +74,27 @@ public class levelGenerator : MonoBehaviour {
                 if (acceptable)
                 {
                     cursorPosition += directionToVector(directionProd);
-                    f.Add(new Room(0, cursorPosition));
+                    f.Add(new Room(s, cursorPosition));
 
                     //bool[] debugDirs = f.checkDirections(cursorPosition);
                     //Debug.Log("lcoation:" + cursorPosition + " direction: " + directionProd + " sides: " + debugDirs[0] + " " + debugDirs[1] + " " + debugDirs[2] + " " + debugDirs[3]);
                 }
             }
             
-		}
+            if (winPath == winPathCount-1)
+                f[winPath].isDestination = true;
+        }
 
 
         //Add sister rooms
         /*
-        foreach (Room r in f)
+        for (int i = 0; i < winPathCount * 2 / 3; i++)
         {
-            if (UnityEngine.Random.Range(0, 1) <= .7f)
+            Direction prod = (Direction)UnityEngine.Random.Range(0, 4);
+            int potentialSister = 0;
+            while (f.checkDirections(potentialSister)[prod])
             {
-                Direction prod = Random
+                potentialSister = UnityEngine.Random.Range(0, f.Count);
             }
         }*/
 
@@ -137,11 +141,13 @@ public class levelGenerator : MonoBehaviour {
         {
             GameObject m;
             //TODO: randomize loads
+            string stylename = Enum.GetName(typeof(Style), r.style);
+            Debug.Log(stylename);
             if (r.direction != Direction.CROSS && r.direction != Direction.HCROSS)
-                m = Instantiate(Resources.Load<GameObject>("room" + r.doorCount)); //"testAssetDONOTUSE"));//
+                m = Instantiate(Resources.Load<GameObject>(stylename + "/room" + r.doorCount)); //"testAssetDONOTUSE"));//
             else
-                m = Instantiate(Resources.Load<GameObject>("Room5"));
-            m.transform.position = new Vector3(r.location.x * -6.4f, 40*currentFloor, r.location.y * -6.4f);
+                m = Instantiate(Resources.Load<GameObject>(stylename + "/room5"));
+            m.transform.position = new Vector3(r.location.x * -6.4f*2, 40*currentFloor, r.location.y * -6.4f*2);
             m.name = r.location.x + " " + r.location.y;
 
             //set room directions
@@ -237,7 +243,7 @@ public class Room{
 	public byte doorCount = 0;
 	public Direction direction = Direction.NORTH;
     public bool[] siblings = new bool[4];
-	public Style style = Style.DEFAULT;
+	public Style style = Style.western;
 	public Vector2 location = Vector2.zero;
 	public bool isDestination = false;
 
@@ -316,6 +322,8 @@ public enum Direction{
 }
 
 public enum Style{
-	DEFAULT = 0,
-	SOMETHINGELSE = 1
+	mansion = 0,
+	western = 1,
+    dungeon = 2
+
 }
