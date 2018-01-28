@@ -138,9 +138,9 @@ public class levelGenerator : MonoBehaviour {
             //TODO: randomize loads
             string stylename = Enum.GetName(typeof(Style), r.style);
             if (r.direction != Direction.CROSS && r.direction != Direction.HCROSS)
-                m = Instantiate(Resources.Load<GameObject>(stylename + "/room" + r.doorCount)); //"testAssetDONOTUSE"));//
+                m = Instantiate(Resources.Load<GameObject>(stylename + "/room" + r.doorCount + "-" + (int)UnityEngine.Random.Range(1,3))); 
             else
-                m = Instantiate(Resources.Load<GameObject>(stylename + "/room5"));
+                m = Instantiate(Resources.Load<GameObject>(stylename + "/room5-" + (int)UnityEngine.Random.Range(1, 3)));
             m.transform.position = new Vector3(r.location.x * -6.4f*2, 0, r.location.y * -6.4f*2);
             m.name = r.location.x + " " + r.location.y;
 

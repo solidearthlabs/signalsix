@@ -187,7 +187,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4929504309930264, guid: f1107d14b63c58b428ef7121ef160f03, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -1.7
+      value: 62.6
       objectReference: {fileID: 0}
     - target: {fileID: 4929504309930264, guid: f1107d14b63c58b428ef7121ef160f03, type: 2}
       propertyPath: m_LocalPosition.y
@@ -195,7 +195,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4929504309930264, guid: f1107d14b63c58b428ef7121ef160f03, type: 2}
       propertyPath: m_LocalPosition.z
-      value: -11.8
+      value: -5.67
       objectReference: {fileID: 0}
     - target: {fileID: 4929504309930264, guid: f1107d14b63c58b428ef7121ef160f03, type: 2}
       propertyPath: m_LocalRotation.x
@@ -222,6 +222,11 @@ Prefab:
       propertyPath: m_Speed
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 136054459408268320, guid: f1107d14b63c58b428ef7121ef160f03,
+        type: 2}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f1107d14b63c58b428ef7121ef160f03, type: 2}
   m_IsPrefabParent: 0
@@ -237,7 +242,7 @@ GameObject:
   - component: {fileID: 1002193474}
   - component: {fileID: 1002193473}
   m_Layer: 0
-  m_Name: Cube
+  m_Name: Obstacle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -303,7 +308,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1002193472}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.48, z: -0.9}
+  m_LocalPosition: {x: 62.6, y: 0.48, z: 5.23}
   m_LocalScale: {x: 4.2672577, y: 1, z: 0.37092918}
   m_Children: []
   m_Father: {fileID: 0}
@@ -449,7 +454,7 @@ MonoBehaviour:
   m_OverrideVoxelSize: 0
   m_VoxelSize: 0.16666667
   m_BuildHeightMesh: 0
-  m_NavMeshData: {fileID: 23800000, guid: 51d45d2482539ef4e8f4d1a42b11255c, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: 7681c38ae2b333949a6c51ecaae3add0, type: 2}
 --- !u!23 &1640255665
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -613,7 +618,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1812814052}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.07, y: 0.98, z: 4.33}
+  m_LocalPosition: {x: 62.6, y: 0.98, z: 10.46}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1112723343}
@@ -650,7 +655,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4641713897970950, guid: a68969453417c8e479d24931e9b7895f, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -15.600001
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4641713897970950, guid: a68969453417c8e479d24931e9b7895f, type: 2}
       propertyPath: m_LocalPosition.z
@@ -799,7 +804,7 @@ Transform:
   m_PrefabInternal: {fileID: 1950329606}
   m_GameObject: {fileID: 1950329607}
   m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 50.508, y: -15.600001, z: -16.2}
+  m_LocalPosition: {x: 50.508, y: 0, z: -16.2}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children:
   - {fileID: 1640255663}
