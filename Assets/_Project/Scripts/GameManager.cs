@@ -55,7 +55,6 @@ public class GameManager : MonoBehaviour {
     }
     IEnumerator floorTransition()
     {
-        
         VRFadeToBlack.Darken();
         yield return new WaitForSeconds(.5f);
         AsyncOperation async = SceneManager.LoadSceneAsync("6_conglomerate_test-VRTK");
@@ -64,7 +63,7 @@ public class GameManager : MonoBehaviour {
             yield return null;
         }
         
-        GetComponent<levelGenerator>().Initialize(0);//(Style)currentFloor);
+        GetComponent<levelGenerator>().Initialize((Style)currentFloor);//(Style)currentFloor);
         StartCoroutine(BuildNavMesh());
         StartCoroutine(LoadGolem(0));
         VRFadeToBlack.Lighten();
