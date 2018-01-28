@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class GameManager : MonoBehaviour {
 
@@ -22,7 +23,23 @@ public class GameManager : MonoBehaviour {
 	void Start ()
     {
         GetComponent<levelGenerator>().Initialize();
+        StartCoroutine(BuildNavMesh());
+        StartCoroutine(LoadGolem(0));
 	}
+    IEnumerator LoadGolem(int i)
+    {
+        yield return new WaitForSeconds(5f);
+        GameObject g = Instantiate(Resources.Load<GameObject>("Golem"));
+        g.transform.position = new Vector3(0,40*i + 10,0);
+
+    }
+    IEnumerator BuildNavMesh()
+    {
+        yield return new WaitForSeconds(3f);
+        GameObject.Find("NavMeshPlane").GetComponent<NavMeshSurface>().BuildNavMesh();
+        yield return null;
+    }
+
 
     public void NextFloor()
     {

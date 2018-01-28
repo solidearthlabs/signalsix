@@ -9,6 +9,7 @@ public class TV : MonoBehaviour {
         if(c.gameObject.tag == "Player")
         {
             GameManager.Instance.NextFloor();
+            //Debug.Log("Transmitting");
         }
     }
 }

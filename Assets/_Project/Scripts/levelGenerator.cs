@@ -39,7 +39,6 @@ public class levelGenerator : MonoBehaviour {
 
         //
         int winPathCount = UnityEngine.Random.Range(6,30);
-        Debug.Log(winPathCount);
 
 		Vector2 cursorPosition = Vector2.zero;
 		Direction directionProd = 0;
@@ -142,7 +141,6 @@ public class levelGenerator : MonoBehaviour {
             GameObject m;
             //TODO: randomize loads
             string stylename = Enum.GetName(typeof(Style), r.style);
-            Debug.Log(stylename);
             if (r.direction != Direction.CROSS && r.direction != Direction.HCROSS)
                 m = Instantiate(Resources.Load<GameObject>(stylename + "/room" + r.doorCount)); //"testAssetDONOTUSE"));//
             else
@@ -208,7 +206,20 @@ public class levelGenerator : MonoBehaviour {
             
             if (!r.isDestination)
             {
-                //m.transform.Find("TV").gameObject.SetActive(false);
+                try
+                {
+                    m.transform.Find("TV").gameObject.SetActive(false);
+                }
+                catch (Exception e) { }
+
+            }
+            else
+            {
+                try { 
+                    m.transform.Find("TV").gameObject.AddComponent<TV>();
+                    m.transform.Find("TV").gameObject.AddComponent<BoxCollider>();
+                }
+                catch (Exception e) { }
             }
         }
 
