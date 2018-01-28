@@ -24,20 +24,23 @@ public class EnemyAI : MonoBehaviour
         animator = GetComponent<Animator>();
         pos = transform.position;
         lastPos = pos;
+        StartCoroutine(UpdateNav());
         StartCoroutine(CheckMonsterMovement());
     }
 
-    // Update is called once per frame
-    void Update()
+    IEnumerator UpdateNav()
     {
-        if (player == null)
-        {
+        while(player==null) { 
             GameObject go = GameObject.FindGameObjectWithTag("Player");
             if (go != null)
                 player = go.transform;
+            yield return new WaitForSeconds(1);
         }
-        if (player != null)
+        while (true)
+        {
             navAgent.destination = player.position;
+            yield return new WaitForSeconds(0.5f);
+        }
     }
 
     IEnumerator CheckMonsterMovement()
