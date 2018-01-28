@@ -336,6 +336,7 @@
     <None Include="Assets\mansion\FelineGargoyle\readme_first.txt" />
     <None Include="Assets\mansion\Japanese Mask\Shaders\StandardSpecular.shader" />
     <None Include="Assets\mansion\JuliusCaesarBust\readme_first.txt" />
+    <None Include="Assets\western\HQ Old Books\readme.txt" />
     <None Include="Assets\western\PBR Lamp\ReadMe.txt" />
     <None Include="Assets\western\Retro Cabinet\ReadMe.txt" />
     <None Include="Assets\western\TV\readme.txt" />
