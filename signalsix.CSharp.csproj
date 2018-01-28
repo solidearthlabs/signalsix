@@ -284,9 +284,13 @@
   <ItemGroup>
     <Compile Include="Assets\_Project\Scripts\BasicPlayerController.cs" />
     <Compile Include="Assets\_Project\Scripts\EnemyAI.cs" />
+    <Compile Include="Assets\_Project\Scripts\GameManager.cs" />
     <Compile Include="Assets\_Project\Scripts\levelGenerator.cs" />
     <Compile Include="Assets\_Project\Scripts\PlayerControl.cs" />
     <Compile Include="Assets\_Project\Scripts\StickToPlayer.cs" />
+    <Compile Include="Assets\_Project\Scripts\TV.cs" />
+    <Compile Include="Assets\_Project\Scripts\VRFadeToBlack.cs" />
+    <Compile Include="Assets\Golem\Scripts\buttons.cs" />
     <Compile Include="Assets\NavMeshComponents\Examples\Scripts\AgentLinkMover.cs" />
     <Compile Include="Assets\NavMeshComponents\Examples\Scripts\ClickToMove.cs" />
     <Compile Include="Assets\NavMeshComponents\Examples\Scripts\DestroyOnTrigger.cs" />
@@ -307,6 +311,8 @@
     <Compile Include="Assets\NavMeshComponents\Scripts\NavMeshSurface.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Assets\mansion\FelineGargoyle\readme_first.txt" />
+    <None Include="Assets\mansion\Japanese Mask\Shaders\StandardSpecular.shader" />
     <None Include="Assets\mansion\JuliusCaesarBust\readme_first.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2015\UnityVS.CSharp.targets" />
