@@ -6,10 +6,10 @@ public class VRFadeToBlack : MonoBehaviour {
     
     public static void Darken()
     {
-        SteamVR_Fade.Start(Color.black, 1f);
+        SteamVR_Fade.Start(Color.black, .5f);
     }
     public static void Lighten()
     {
-        SteamVR_Fade.Start(Color.clear, 1f);
+        SteamVR_Fade.Start(Color.clear, .5f);
     }
 }

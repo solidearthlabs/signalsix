@@ -2,11 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour {
 
     public static GameManager Instance;
     public GameObject player;
+
+    public int currentFloor = 0;
 
     void Awake()
     {
@@ -22,7 +25,7 @@ public class GameManager : MonoBehaviour {
 	
 	void Start ()
     {
-        GetComponent<levelGenerator>().Initialize();
+        GetComponent<levelGenerator>().Initialize(0);// (Style)currentFloor);
         StartCoroutine(BuildNavMesh());
         StartCoroutine(LoadGolem(0));
 	}
@@ -30,7 +33,7 @@ public class GameManager : MonoBehaviour {
     {
         yield return new WaitForSeconds(5f);
         GameObject g = Instantiate(Resources.Load<GameObject>("Golem"));
-        g.transform.position = new Vector3(0,40*i + 10,0);
+        g.transform.position = new Vector3(0,0,0);
 
     }
     IEnumerator BuildNavMesh()
@@ -40,16 +43,30 @@ public class GameManager : MonoBehaviour {
         yield return null;
     }
 
+    void Update() {
+        if (Input.GetKeyDown(KeyCode.H))
+            NextFloor();
+    }
 
     public void NextFloor()
     {
+        currentFloor++;
         StartCoroutine(floorTransition());
     }
     IEnumerator floorTransition()
     {
+        
         VRFadeToBlack.Darken();
-        yield return new WaitForSeconds(1f);
-        player.transform.position = new Vector3(0, 40 * GetComponent<levelGenerator>().currentFloor, 0);
+        yield return new WaitForSeconds(.5f);
+        AsyncOperation async = SceneManager.LoadSceneAsync("6_conglomerate_test-VRTK");
+        while (!async.isDone)
+        {
+            yield return null;
+        }
+        
+        GetComponent<levelGenerator>().Initialize(0);//(Style)currentFloor);
+        StartCoroutine(BuildNavMesh());
+        StartCoroutine(LoadGolem(0));
         VRFadeToBlack.Lighten();
         yield return null;
     }

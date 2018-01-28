@@ -5,40 +5,36 @@ using UnityEngine;
 
 public class levelGenerator : MonoBehaviour {
 
-	List<Floor> world = new List<Floor>();
+	//List<Floor> world = new List<Floor>();
     public GameObject levelHolder;
-
-    public int currentFloor = 0;
-	public void Initialize () {
-        levelHolder = new GameObject("Floor" + currentFloor);
-
-        for (currentFloor = 0; currentFloor<3; currentFloor++)
-		    world.Add(generateFloor(Style.mansion));
+    
+	public void Initialize (Style s) {
+        levelHolder = new GameObject("Floor" + GameManager.Instance.currentFloor);
+        
+		generateFloor(s);
 	}
 
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.J))
         {
-            world.Clear();
             //int count = levelHolder.transform.childCount;
             //for (int i = 0; i < count; i++)
                 Destroy(levelHolder);
-            levelHolder = new GameObject("Floor" + currentFloor);
-            world.Add(generateFloor(Style.mansion));
+            levelHolder = new GameObject("Floor" + GameManager.Instance.currentFloor);
+            generateFloor((Style)0);
         }
     }
-	
 
-
-	Floor generateFloor(Style s){
+    public Floor generateFloor(Style s){
 		Floor f = new Floor();
+
 
         f.Add(new Room(s, Vector2.zero));
 
 
         //
-        int winPathCount = UnityEngine.Random.Range(6,30);
+        int winPathCount = UnityEngine.Random.Range(6,12);
 
 		Vector2 cursorPosition = Vector2.zero;
 		Direction directionProd = 0;
@@ -145,7 +141,7 @@ public class levelGenerator : MonoBehaviour {
                 m = Instantiate(Resources.Load<GameObject>(stylename + "/room" + r.doorCount)); //"testAssetDONOTUSE"));//
             else
                 m = Instantiate(Resources.Load<GameObject>(stylename + "/room5"));
-            m.transform.position = new Vector3(r.location.x * -6.4f*2, 40*currentFloor, r.location.y * -6.4f*2);
+            m.transform.position = new Vector3(r.location.x * -6.4f*2, 0, r.location.y * -6.4f*2);
             m.name = r.location.x + " " + r.location.y;
 
             //set room directions
@@ -208,7 +204,8 @@ public class levelGenerator : MonoBehaviour {
             {
                 try
                 {
-                    m.transform.Find("TV").gameObject.SetActive(false);
+                    if (r.location != Vector2.zero)
+                        m.transform.Find("TV").gameObject.SetActive(false);
                 }
                 catch (Exception e) { }
 
@@ -221,9 +218,12 @@ public class levelGenerator : MonoBehaviour {
                 }
                 catch (Exception e) { }
             }
+
         }
 
-		return f;
+        //next floor style
+        //s = (Style)((int)s + 1);
+        return f;
 
 	}
 
