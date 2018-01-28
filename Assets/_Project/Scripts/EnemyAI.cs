@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-using UnityEngine;
-using System.Collections;
 using UnityEngine.AI;
 
 [DefaultExecutionOrder(100)]
@@ -12,7 +10,6 @@ public class EnemyAI : MonoBehaviour
     private float moveCheckTime = 0.2f;
     private float thresholdWalkingStop = 0.3f;
     private float thresholdWalkingStart = 0.1f;
-    private float stopDistance = 0.1f;
     private Transform player;
     private NavMeshAgent navAgent;
     private Animator animator;
@@ -51,23 +48,11 @@ public class EnemyAI : MonoBehaviour
             pos = transform.position;
             speed = Vector3.Distance(lastPos, pos);
             lastPos = pos;
-            if (!walking && speed > thresholdWalkingStart)
+            if ((!walking && speed > thresholdWalkingStart) || (walking && speed < thresholdWalkingStop))
             {
                 walking = !walking;
                 animator.SetBool("moving", walking);
             }
-            else if (walking && speed < thresholdWalkingStop) {
-                walking = !walking;
-                animator.SetBool("moving", walking);
-                navAgent.isStopped = true;
-            }
-            else if (navAgent.isStopped)
-            {
-                float dist = Vector3.Distance(player.transform.position, pos);
-                if (dist > stopDistance)
-                    navAgent.isStopped = false;
-            }
-
         }
     }
 }

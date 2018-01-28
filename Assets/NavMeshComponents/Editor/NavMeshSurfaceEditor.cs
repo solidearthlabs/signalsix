@@ -358,7 +358,8 @@ namespace UnityEditor.AI
             var emptySources = new List<NavMeshBuildSource>();
             var emptyBounds = new Bounds();
             return UnityEngine.AI.NavMeshBuilder.BuildNavMeshData(surface.GetBuildSettings(), emptySources, emptyBounds
-                , surface.transform.position, surface.transform.rotation);
+                , surface.transform.position, surface.transform.rotation );
+            //, surface.transform.position, surface.transform.rotation* Quaternion.Euler(Vector3.forward * 90));
         }
 
         static void UpdateAsyncBuildOperations()

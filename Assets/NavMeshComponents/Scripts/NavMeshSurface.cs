@@ -154,6 +154,8 @@ namespace UnityEngine.AI
                 sourcesBounds = CalculateWorldBounds(sources);
             }
 
+            //var data = NavMeshBuilder.BuildNavMeshData(GetBuildSettings(),
+            //        sources, sourcesBounds, transform.position, transform.rotation * Quaternion.Euler(Vector3.forward * 90));
             var data = NavMeshBuilder.BuildNavMeshData(GetBuildSettings(),
                     sources, sourcesBounds, transform.position, transform.rotation);
 
