@@ -2,9 +2,9 @@
 using System.Collections;
 using System.IO;
 
-public class AudioManager : MonoBehaviour {
+public class Audio : MonoBehaviour {
 
-    public static AudioManager Instance;
+    public Audio Instance;
     public AudioClip[] clips;
     AudioSource audioSource;
     AudioSource music;
@@ -13,13 +13,13 @@ public class AudioManager : MonoBehaviour {
 	void Start ()
     {
         Instance = this;
-        DirectoryInfo d = new DirectoryInfo("Assets/_Project/Prefabs/Resources/Audio");
+        DirectoryInfo d = new DirectoryInfo("Assets/Prefabs/Resources/Audio");
 
         //counts files for proper initialization
         int i = 0;
         foreach (FileInfo f in d.GetFiles())
         {
-            if(f.Extension == ".wav" || f.Extension == ".mp3")
+            if(f.Extension == ".wav")
                 i++;
         }
         clips = new AudioClip[i];
@@ -27,7 +27,7 @@ public class AudioManager : MonoBehaviour {
         i = 0;
         foreach (FileInfo f in d.GetFiles())
         {
-            if (f.Extension == ".wav" || f.Extension == ".mp3")
+            if (f.Extension == ".wav")
             {
                 string name = Path.GetFileNameWithoutExtension(f.Name);
                 clips[i] = Resources.Load("Audio/" + name) as AudioClip;
