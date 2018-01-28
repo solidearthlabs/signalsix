@@ -227,6 +227,10 @@ Prefab:
       propertyPath: m_IsTrigger
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1548343931931298, guid: f1107d14b63c58b428ef7121ef160f03, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f1107d14b63c58b428ef7121ef160f03, type: 2}
   m_IsPrefabParent: 0
@@ -405,6 +409,7 @@ GameObject:
   - component: {fileID: 1591439560}
   - component: {fileID: 1591439559}
   - component: {fileID: 1591439561}
+  - component: {fileID: 1591439562}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -426,8 +431,7 @@ MonoBehaviour:
   player: {fileID: 1812814052}
   currentFloor: 0
   deathScene: 7_360_vid
-  audioSource: {fileID: 0}
-  deathAudioClip: {fileID: 0}
+  deathAudioClip: 
 --- !u!4 &1591439560
 Transform:
   m_ObjectHideFlags: 0
@@ -453,6 +457,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levelHolder: {fileID: 0}
+--- !u!114 &1591439562
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1591439558}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00e03dfbeadbb3748a8d2890365d6239, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clips: []
 --- !u!1 &1640255662
 GameObject:
   m_ObjectHideFlags: 0
