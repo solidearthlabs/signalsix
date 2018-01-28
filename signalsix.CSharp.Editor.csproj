@@ -298,11 +298,46 @@
     <Compile Include="Assets\NavMeshComponents\Editor\NavMeshModifierVolumeEditor.cs" />
     <Compile Include="Assets\NavMeshComponents\Editor\NavMeshSurfaceEditor.cs" />
     <Compile Include="Assets\NavMeshComponents\Examples\Editor\NavMeshPrefabInstanceEditor.cs" />
+    <Compile Include="Assets\SteamVR\Editor\SteamVR_Editor.cs" />
+    <Compile Include="Assets\SteamVR\Editor\SteamVR_Preferences.cs" />
+    <Compile Include="Assets\SteamVR\Editor\SteamVR_RenderModelEditor.cs" />
+    <Compile Include="Assets\SteamVR\Editor\SteamVR_Settings.cs" />
+    <Compile Include="Assets\SteamVR\Editor\SteamVR_SkyboxEditor.cs" />
+    <Compile Include="Assets\SteamVR\Editor\SteamVR_Update.cs" />
+    <Compile Include="Assets\VRTK\Editor\VRTK_AdaptiveQualityEditor.cs" />
+    <Compile Include="Assets\VRTK\Editor\VRTK_EditorUtilities.cs" />
+    <Compile Include="Assets\VRTK\Editor\VRTK_InteractHapticsEditor.cs" />
+    <Compile Include="Assets\VRTK\Editor\VRTK_ObjectSetup.cs" />
+    <Compile Include="Assets\VRTK\Editor\VRTK_PolicyListEditor.cs" />
+    <Compile Include="Assets\VRTK\Editor\VRTK_RadialMenuEditor.cs" />
+    <Compile Include="Assets\VRTK\Editor\VRTK_SDKManagerEditor.cs" />
+    <Compile Include="Assets\VRTK\Editor\VRTK_SDKSetupEditor.cs" />
+    <Compile Include="Assets\VRTK\Editor\VRTK_SupportInfoWindow.cs" />
+    <Compile Include="Assets\VRTK\Editor\VRTK_UpdatePrompt.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Assets\SteamVR\InteractionSystem\Core\Shaders\SeeThru.shader" />
+    <None Include="Assets\SteamVR\InteractionSystem\Core\Shaders\Silhouette.shader" />
+    <None Include="Assets\SteamVR\InteractionSystem\Hints\Shaders\ControllerButtonHints.shader" />
+    <None Include="Assets\SteamVR\InteractionSystem\Readme_InteractionSystem.txt" />
+    <None Include="Assets\SteamVR\InteractionSystem\Teleport\Shaders\Highlight.shader" />
+    <None Include="Assets\SteamVR\Resources\SteamVR_AlphaOut.shader" />
+    <None Include="Assets\SteamVR\Resources\SteamVR_ClearAll.shader" />
+    <None Include="Assets\SteamVR\Resources\SteamVR_ColorOut.shader" />
+    <None Include="Assets\SteamVR\Resources\SteamVR_Fade.shader" />
+    <None Include="Assets\SteamVR\Resources\SteamVR_SphericalProjection.shader" />
+    <None Include="Assets\SteamVR\readme.txt" />
+    <None Include="Assets\VRTK\Scripts\Internal\Shaders\AdaptiveQualityDebugVisualization.shader" />
+    <None Include="Assets\VRTK\Scripts\Internal\Shaders\TransparentFresnelBehind.shader" />
+    <None Include="Assets\VRTK\Scripts\Internal\Shaders\UIOverlay.shader" />
+    <None Include="Assets\VRTK\Scripts\Internal\Shaders\Unlit_TransparentColor.shader" />
+    <None Include="Assets\VRTK\Scripts\Internal\Shaders\VRTK_OutlineBasic.shader" />
     <None Include="Assets\mansion\FelineGargoyle\readme_first.txt" />
     <None Include="Assets\mansion\Japanese Mask\Shaders\StandardSpecular.shader" />
     <None Include="Assets\mansion\JuliusCaesarBust\readme_first.txt" />
+    <None Include="Assets\western\PBR Lamp\ReadMe.txt" />
+    <None Include="Assets\western\Retro Cabinet\ReadMe.txt" />
+    <None Include="Assets\western\TV\readme.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2015\UnityVS.CSharp.targets" />
 </Project>
