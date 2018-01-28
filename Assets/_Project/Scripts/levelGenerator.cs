@@ -8,12 +8,12 @@ public class levelGenerator : MonoBehaviour {
 	List<Floor> world = new List<Floor>();
     public GameObject levelHolder;
 
-    int currentFloor = 0;
-	void Start () {
+    public int currentFloor = 0;
+	public void Initialize () {
         levelHolder = new GameObject("Floor" + currentFloor);
 
         for (currentFloor = 0; currentFloor<3; currentFloor++)
-		    world.Add(generateFloor(Style.western));
+		    world.Add(generateFloor(Style.mansion));
 	}
 
     void Update()
@@ -206,6 +206,10 @@ public class levelGenerator : MonoBehaviour {
 
             m.transform.parent = levelHolder.transform;
             
+            if (!r.isDestination)
+            {
+                //m.transform.Find("TV").gameObject.SetActive(false);
+            }
         }
 
 		return f;
