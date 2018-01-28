@@ -53,7 +53,7 @@ public class GameManager : MonoBehaviour {
     {
         yield return new WaitForSeconds(5f);
         GameObject g = Instantiate(Resources.Load<GameObject>("Golem"));
-        g.transform.position = new Vector3(0,0,0);
+        g.transform.position = new Vector3(3,0,0);
 
     }
     IEnumerator BuildNavMesh()
