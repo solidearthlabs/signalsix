@@ -144,6 +144,17 @@ public class levelGenerator : MonoBehaviour {
             m.transform.position = new Vector3(r.location.x * -6.4f*2, 0, r.location.y * -6.4f*2);
             m.name = r.location.x + " " + r.location.y;
 
+            //Add grabbable components
+            for(int i = 0; i< m.transform.childCount; i++)
+            {
+                GameObject g = m.transform.GetChild(i).gameObject;
+                g.AddComponent<VRTK.VRTK_InteractableObject>().isGrabbable = true;
+                VRTK.GrabAttachMechanics.VRTK_FixedJointGrabAttach c = g.AddComponent<VRTK.GrabAttachMechanics.VRTK_FixedJointGrabAttach>();
+                c.precisionGrab = true;
+                c.throwMultiplier = 5;
+                g.AddComponent<BoxCollider>();
+            }
+
             //set room directions
             switch (r.direction)
             {
