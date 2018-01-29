@@ -22,10 +22,11 @@ public class levelGenerator : MonoBehaviour {
             //for (int i = 0; i < count; i++)
                 Destroy(levelHolder);
             levelHolder = new GameObject("Floor" + GameManager.Instance.currentFloor);
-            generateFloor((Style)0);
+            generateFloor((Style)1);
         }
     }
 
+    bool hasFinished = true;
     public Floor generateFloor(Style s){
 		Floor f = new Floor();
 
@@ -53,6 +54,7 @@ public class levelGenerator : MonoBehaviour {
                 if (f.checkDoorNum(cursorPosition) == 4)
                 {
                     f[winPath].isDestination = true;
+                    hasFinished = true;
                     winPath = winPathCount;
                     acceptable = true;
                     //don't add a room if you're stuck
@@ -75,8 +77,14 @@ public class levelGenerator : MonoBehaviour {
                     //Debug.Log("lcoation:" + cursorPosition + " direction: " + directionProd + " sides: " + debugDirs[0] + " " + debugDirs[1] + " " + debugDirs[2] + " " + debugDirs[3]);
                 }
             }
-            
-            if (winPath == winPathCount-1)
+
+            if (UnityEngine.Random.Range(0f, 1f) > .8f && winPath>0)
+            {
+                f[winPath].isDestination = true;
+                hasFinished = true;
+            }
+
+            if (winPath == winPathCount-1 && !hasFinished)
                 f[winPath].isDestination = true;
         }
 
@@ -141,7 +149,7 @@ public class levelGenerator : MonoBehaviour {
                 m = Instantiate(Resources.Load<GameObject>(stylename + "/room" + r.doorCount + "-" + (int)UnityEngine.Random.Range(1,3))); 
             else
                 m = Instantiate(Resources.Load<GameObject>(stylename + "/room5-" + (int)UnityEngine.Random.Range(1, 3)));
-            m.transform.position = new Vector3(r.location.x * -6.4f*2, 0, r.location.y * -6.4f*2);
+            m.transform.position = new Vector3(r.location.x * -6.4f*2, -10, r.location.y * -6.4f*2);
             m.name = r.location.x + " " + r.location.y;
 
             //Add grabbable components
@@ -216,8 +224,11 @@ public class levelGenerator : MonoBehaviour {
                 try
                 {
                     if (r.location != Vector2.zero)
+                    {
                         m.transform.Find("TV").gameObject.SetActive(false);
-                }
+                        m.transform.Find("SecretBook").gameObject.SetActive(false);
+                    }
+                    }
                 catch (Exception e) { }
 
             }
@@ -349,7 +360,6 @@ public enum Direction{
 
 public enum Style{
 	mansion = 0,
-	western = 1,
-    dungeon = 2
+	western = 1
 
 }

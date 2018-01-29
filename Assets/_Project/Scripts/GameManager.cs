@@ -24,6 +24,8 @@ public class GameManager : MonoBehaviour {
         }
         else
             Destroy(gameObject);
+
+
     }
 
 	
@@ -35,7 +37,7 @@ public class GameManager : MonoBehaviour {
         navMeshSurface = navMeshSurfaces[0];
 
         GetComponent<levelGenerator>().Initialize(0);// (Style)currentFloor);
-        StartCoroutine(BuildNavMesh());
+        
         StartCoroutine(LoadGolem(0));
         if (player == null)
             Debug.LogError("Player == null");
@@ -51,9 +53,10 @@ public class GameManager : MonoBehaviour {
     }
     IEnumerator LoadGolem(int i)
     {
-        yield return new WaitForSeconds(5f);
-        GameObject g = Instantiate(Resources.Load<GameObject>("Golem"));
-        g.transform.position = new Vector3(3,0,0);
+        yield return new WaitForSeconds(10f);
+        GameObject g = Instantiate(Resources.Load<GameObject>("Golem2"));
+        g.transform.position = new Vector3(0,-10,0);
+        StartCoroutine(BuildNavMesh());
 
     }
     IEnumerator BuildNavMesh()
@@ -72,6 +75,8 @@ public class GameManager : MonoBehaviour {
     public void NextFloor()
     {
         currentFloor++;
+        if (currentFloor >= 2)
+            currentFloor = 0;
         StartCoroutine(floorTransition());
     }
     IEnumerator floorTransition()
@@ -83,9 +88,8 @@ public class GameManager : MonoBehaviour {
         {
             yield return null;
         }
-        
+
         GetComponent<levelGenerator>().Initialize((Style)currentFloor);//(Style)currentFloor);
-        StartCoroutine(BuildNavMesh());
         StartCoroutine(LoadGolem(0));
         VRFadeToBlack.Lighten();
         yield return null;
