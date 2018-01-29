@@ -15,7 +15,7 @@ Assets/SteamVR*
 Assets/VRTK*
 ProjectSettings/UnityAdsSettings.asset
 ProjectSettings/TimeManager.asset
-ProjectSettings/TagManager.asset
+#ProjectSettings/TagManager.asset
 ProjectSettings/UnityConnectSettings.asset
 ProjectSettings/UnityAdsSettings.asset.meta
 ProjectSettings/InputManager.asset
@@ -28,7 +28,6 @@ ProjectSettings/AudioManager.asset
 signalsix.csproj
 signalsix.Editor.csproj
 Assets/Monster3*
-Assets/_Project/Scenes/4_mockup_level-VRTK.meta
 ProjectSettings*
 signalsix.userprefs
 Assets/Golem.meta
