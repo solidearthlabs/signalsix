@@ -27,6 +27,6 @@ ProjectSettings/AudioManager.asset
 signalsix.csproj
 signalsix.Editor.csproj
 Assets/Monster3*
-ProjectSettings*
+#ProjectSettings*
 signalsix.userprefs
 Assets/Golem.meta
