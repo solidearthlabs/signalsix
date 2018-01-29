@@ -14,7 +14,6 @@ ProjectSettings.asset
 Assets/SteamVR*
 Assets/VRTK*
 ProjectSettings/UnityAdsSettings.asset
-ProjectSettings/TimeManager.asset
 #ProjectSettings/TagManager.asset
 ProjectSettings/UnityConnectSettings.asset
 ProjectSettings/UnityAdsSettings.asset.meta
