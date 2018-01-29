@@ -161,6 +161,7 @@ public class levelGenerator : MonoBehaviour {
                 c.precisionGrab = true;
                 c.throwMultiplier = 5;
                 g.AddComponent<BoxCollider>();
+                g.layer = LayerMask.NameToLayer("Throwables");
             }
 
             //set room directions
